@@ -3,7 +3,40 @@ showSlides(slideIndex);
 
 document.addEventListener('DOMContentLoaded', function() {
     currentSlide(1);
+    addButtons();
 }, false);
+
+function addNextButton(currentSlide){
+    let button = document.createElement("button");
+    button.setAttribute("type", "button");
+    button.innerText = "Siguiente";
+    button.addEventListener("click", e => {
+        plusSlides(1)
+    })
+    currentSlide.appendChild(button)
+}
+
+function addPrevButton(currentSlide){
+    let button = document.createElement("button");
+    button.setAttribute("type", "button");
+    button.innerText = "Volver";
+    button.addEventListener("click", e => {
+        plusSlides(-1)
+    })
+    currentSlide.appendChild(button)
+}
+
+function addButtons(){
+    var slides = document.getElementsByClassName("slide");
+    for (let i = 0; i< slides.length; i++) {
+        if(i!=0) {
+            addPrevButton(slides[i])
+        }
+        if(i!=slides.length-1) {
+            addNextButton(slides[i])
+        }
+    }
+}
 
 function plusSlides(n) {
     showSlides(slideIndex += n);
@@ -20,8 +53,15 @@ function resetHighlight(){
     })
 }
 
-function highlightReplace(replaceList) {
+function highlightReplace(slideForm) {
     let color_list = ["red", "blue", "yellow", "green"]
+    let inputs = Array.from(slideForm.getElementsByClassName("input_form"));
+    
+    let replaceList = [];
+    inputs.forEach(input => {
+        replaceList.push("data_"+input.id)
+    })
+
     let color_pos = 0;
     replaceList.forEach(replaceObj => {
         let matches = Array.from(document.getElementsByClassName(replaceObj));
@@ -33,29 +73,17 @@ function highlightReplace(replaceList) {
 }
 
 function showSlides(n) {
-    let matchPerSlide = [
-        ["data_name", "data_last_name"],
-        ["data_document"]
-    ]
-    resetHighlight();
-    highlightReplace(matchPerSlide[slideIndex-1]);
     var i;
     var slides = document.getElementsByClassName("slide");
-    var dots = document.getElementsByClassName("dot");
+    resetHighlight();
+    highlightReplace(slides[slideIndex-1]);
     if (n > slides.length) {slideIndex = 1}    
     if (n < 1) {slideIndex = slides.length}
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
     
     if (slides[slideIndex-1] != undefined) {
         slides[slideIndex-1].style.display = "block";
-        let active_dots = document.getElementsByClassName("dot-n-"+slideIndex);
-        for(let i = 0; i< active_dots.length; i++){
-            active_dots[i].className += " active";
-        }
     }
 }
