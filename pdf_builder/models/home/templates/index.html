@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,204 +7,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PDF Builder</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        display: flex;
-    }
-
-    main {
-        width: 50%;
-        padding: 40px 20px 10px;
-    }
-
-    form {
-        width: 100%;
-        margin: 10px;
-    }
-
-    form>* {
-        margin: 5px;
-    }
-
-    label {
-        display: block;
-    }
-
-    input {
-        width: 100%;
-    }
-
-    aside {
-        width: 50%;
-        padding: 40px 20px 10px;
-    }
-</style>
-<script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
-
-    document.addEventListener('DOMContentLoaded', function() {
-        currentSlide(1);
-    }, false);
-
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
-
-    function resetHighlight(){
-        let matches = Array.from(document.getElementsByClassName("data"));
-        matches.forEach(match => {
-            match.style.backgroundColor = "transparent";
-        })
-    }
-
-    function highlightReplace(replaceList) {
-        let color_list = ["red", "blue", "yellow", "green"]
-        let color_pos = 0;
-        replaceList.forEach(replaceObj => {
-            let matches = Array.from(document.getElementsByClassName(replaceObj));
-            matches.forEach(match => {
-                match.style.backgroundColor = color_list[color_pos];
-            })
-        color_pos++;
-        });
-    }
-
-    function showSlides(n) {
-        let matchPerSlide = [
-            ["data_name", "data_last_name"],
-            ["data_document"]
-        ]
-        resetHighlight();
-        highlightReplace(matchPerSlide[slideIndex-1]);
-        var i;
-        var slides = document.getElementsByClassName("slide");
-        var dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}    
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        
-        if (slides[slideIndex-1] != undefined) {
-            slides[slideIndex-1].style.display = "block";
-            let active_dots = document.getElementsByClassName("dot-n-"+slideIndex);
-            for(let i = 0; i< active_dots.length; i++){
-                active_dots[i].className += " active";
-            }
-        }
-    }
-</script>
-
 <body>
     <main>
         <div class="slider_container">
-            <form action="" id="name_form" class="slide">
-                <div class="input_container">
-                    <label for="name">Nombres</label>
-                    <input type="text" id="name" class="input_form">
-                </div>
-                <div class="input_container">
-                    <label for="last_name">Apellidos</label>
-                    <input type="text" id="last_name" class="input_form">
-                </div>
-                <button>Siguiente</button>
-            </form>
-            <form action="" id="data_form" class="slide">
-                <div class="input_container">
-                    <label for="document">CC</label>
-                    <input type="text" id="document" class="input_form">
-                </div>
-                <div class="input_container">
-                    <label for="address">Direcci&oacute;n</label>
-                    <input type="text" id="address" class="input_form">
-                    <button type="button" onclick="plusSlides(-1)">Volver</button>
-                </div>
-            </form>
+            <div class="slider">{% include "forms/contratista.html" %}</div>
+            <div class="slider">{% include "forms/contratistaNombre.html" %}</div>
         </div>
     </main>
     <aside id="preview">
-        <div id="preview-loading-container" style="display: none;">
-            <p>Cargando Preview</p>
-        </div>
-        <br>
-        <span>CC: </span><span class="data data_document">_____________</span>
-        <span class=" data data_name">_____________</span> <span class="data data_last_name">_____________</span>
-        <br>
-        <br>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita dolor debitis explicabo, perferendis dicta
-            fuga eos beatae, modi laboriosam similique nihil illum quidem ducimus id voluptate corporis officiis corrupti
-            soluta.
-            Totam assumenda corrupti expedita quod provident dolorum ipsa, numquam debitis odit quae, aliquam sunt
-            dignissimos fugiat deleniti vitae! Ipsa veniam similique aliquam adipisci maiores veritatis nihil eius placeat
-            possimus suscipit!
-            Consectetur in labore magnam dignissimos delectus, laborum, maxime fugiat quod optio culpa alias quia adipisci.
-            Cupiditate eaque ad excepturi unde doloremque corrupti placeat incidunt voluptates qui, amet repellat corporis
-            quaerat!
-            Velit culpa et omnis, quia distinctio libero animi? Hic minima ad voluptatibus quos, modi amet asperiores,
-            mollitia nulla vel esse doloribus nisi rerum nobis corrupti unde voluptas quas quis est.
-            Laudantium dolores quaerat eligendi rem dolor rerum nisi adipisci nulla odio deleniti, optio nesciunt natus
-            laboriosam officiis ipsam, tempora dolorem odit neque quod. Corrupti alias mollitia officiis commodi deleniti
-            reiciendis?
-            Nobis, nisi veritatis, mollitia debitis, corporis autem dignissimos voluptatem necessitatibus ullam alias quod
-            incidunt assumenda hic quibusdam beatae tempora eum. Iste consequatur deserunt modi? Beatae quae atque non
-            laboriosam ut.
-            Maiores ad quo sed laboriosam fugiat a et similique aut. Repudiandae numquam doloribus eveniet nemo? Rerum
-            ratione iusto voluptas consectetur excepturi, tenetur consequatur deleniti illum earum cupiditate eos soluta
-            dolores?
-        </p>
-        <br><br><br>
-        <span class="data data_name">_____________</span> <span class=" data data_last_name">_____________</span>
+        <div class="preview">{% include "preview/preview.html" %}</div>
     </aside>
 </body>
-<script>
-
-    let current_data = 0;
-    let loading_container = document.getElementById("preview-loading-container");
-    let preview = document.getElementById("preview");
-
-    let matchList = ["data_name", "data_last_name"];
-
-    Array.from(document.getElementsByClassName("input_form")).forEach(input => {
-        input.addEventListener("change", e => {
-            console.log(e.target);
-            let data_name = e.target.id
-            let value = e.target.value
-            if(!value) {
-                value = "_____________"
-            }
-            fillData("data_"+data_name, value)
-        })
-    })
-
-    document.getElementById("name_form").addEventListener("submit", function (e) {
-        e.preventDefault();
-        plusSlides(1);
-    })
-
-    function fillData(dataName, data) {
-        let replaces = Array.from(document.getElementsByClassName(dataName))
-        console.log(dataName);
-        console.log(replaces);
-        replaces.forEach(match => {
-            match.innerText = data;
-        })
-    }
-</script>
+<script src="{% static 'js/slider.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
 </html>
