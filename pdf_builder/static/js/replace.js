@@ -3,9 +3,9 @@ let loading_container = document.getElementById("preview-loading-container");
 let preview = document.getElementById("preview");
 
 Array.from(document.getElementsByClassName("input_form")).forEach(input => {
-    input.addEventListener("change", e => {
-        let data_name = e.target.id;
-        let value = e.target.value;
+    input.addEventListener("keyup", e => {
+        let data_name = input.id;
+        let value = input.value;
         if(!value) {
             value = "_____________";
         }

@@ -11,17 +11,22 @@
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
 <body>
+    <header>
+        <h1>PDF Builder POC</h1>
+    </header>
     <main>
         <div class="slider_container">
-            <div class="slide">{% include "forms/hired/hiredName.html"  %}</div>
-            <div class="slide">{% include "forms/hired/hiredData.html" %}</div>
-            <div class="slide">{% include "forms/contractor/contractorName.html" %}</div>
+            <div class="slide">{% include "forms/hired/hiredData.html"  %}</div>
+            <div class="slide">{% include "forms/contractor/contractorData.html" %}</div>
+            <div class="slide">{% include "info/previewing.html" %}</div>
         </div>
     </main>
     <aside id="preview">
-        <div class="preview">{% include "preview/preview.html" %}</div>
+        {% include "preview/preview.html" %}
     </aside>
 </body>
 <script src="{% static 'js/slider.js' %}"></script>
-<script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'js/replace.js' %}"></script>
+<script src="{% static 'js/highlight.js' %}"></script>
+<script src="{% static 'js/exportPDF.js' %}"></script>
 </html>
