@@ -13,19 +13,6 @@ function currentSlide(n) {
     showSlides(slideIndex = n);
 }
 
-function addPreviewButton() {
-    let button = document.createElement("button");
-    button.setAttribute("type", "button");
-    button.innerText = "Prevista";
-    button.addEventListener("click", e => {
-        resetHighlight();
-    })
-
-    buttonContainer =  Array.from(currentSlide.getElementsByClassName("button-container"))[0];
-    buttonContainer.appendChild(button);
-}
-
-
 function addButtons(){
     let slides = document.getElementsByClassName("slide");
     for (let i = 0; i< slides.length; i++) {

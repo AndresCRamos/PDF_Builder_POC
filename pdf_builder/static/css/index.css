@@ -53,6 +53,7 @@ label {
     margin: 10px 0;
     color: white;
     font-weight: bold;
+    position: relative;
 }
 
 .input_container:focus-within,
@@ -62,9 +63,11 @@ label {
 
 .input_form {
     width: calc(100% - 90px);
+    position: absolute;
     height: 100%;
     border: none;
     background-color: transparent;
+    padding: 10px;
     color: white;
 }
 
