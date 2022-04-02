@@ -41,7 +41,8 @@ DEFAULT_APPS = [
 ]
 
 OWN_APPS = [
-    "models.home"
+    "models.home",
+    "models.pdfExport"
 ]
 
 INSTALLED_APPS = DEFAULT_APPS
@@ -66,7 +67,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            "templates"
+            "pdf_builder/templates"
         ],
         'APP_DIRS': True,
         'OPTIONS': {
