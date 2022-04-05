@@ -1,3 +1,3 @@
 function exportPDF() {
-    window.location.href = "localhost:8000/pdf"
+    window.location.replace("pdf");
 }
